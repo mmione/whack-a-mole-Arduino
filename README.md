@@ -6,3 +6,5 @@
 * Arduino Uno or equivalent board, YMMV
 * 3x LEDs
 * 3x pushbuttons
+* PinChangeInterrupt if you're on an Arduino board limited in interrupt pins
+
