@@ -20,9 +20,8 @@ int lives = 4;
  
 void setup() {
 
-  randomSeed(analogRead(0));
+  randomSeed(analogRead(0)); // Initializing random using pin 0, choose whichever you'd like.
   
-  // put your setup code here, to run once:
   pinMode(mole_1, OUTPUT);
   pinMode(mole_2, OUTPUT);
   pinMode(mole_3, OUTPUT);
@@ -34,11 +33,7 @@ void setup() {
  
 }
 
-void ISR_1(){
-
-//  LED_on(mole_1);
-//  LED_off(mole_2);
-//  LED_off(mole_3);
+void ISR_1(){ // ISR to handle Mole 1
 
   buttonPressed = 1;
 
@@ -48,14 +43,9 @@ void ISR_1(){
       
   } 
 
-  
 }
 
-void ISR_2(){
-
-//  LED_off(mole_1);
-//  LED_on(mole_2);
-//  LED_off(mole_3);
+void ISR_2(){ // ISR to handle Mole 1
 
   buttonPressed = 2;
   
@@ -63,15 +53,11 @@ void ISR_2(){
     
     LED_off(mole_2);
     
-    
   } 
+
 }
 
-void ISR_3(){
-
-//  LED_off(mole_1);
-//  LED_off(mole_2);
-//  LED_on(mole_3);
+void ISR_3(){ // ... 
 
   buttonPressed = 3;
 
@@ -80,7 +66,6 @@ void ISR_3(){
     LED_off(mole_3);
     
   } 
-
   
 }
 
@@ -116,9 +101,9 @@ void loop() {
   } else {
   
     
-    buttonPressed = 4; 
+    buttonPressed = 4; // Reset button to arbitrary value, not one we care about. 
     
-    // choose a number (mole number) and light up that LED...
+    // Choose a number at random (mole number) and light up that LED...
     LED_off(mole_1);
     LED_off(mole_2);
     LED_off(mole_3);
@@ -133,7 +118,7 @@ void loop() {
   
       lives--;
       
-      tone(buzzer, 31, 175); 
+      tone(buzzer, 31, 175); // Plays tone to show they missed the mole
       delay(250);
       tone(buzzer, 80, 175); 
   
@@ -142,7 +127,8 @@ void loop() {
   
       winNumber++;
       
-      LED_off(mole_1);
+      // Win LED sequence, could be cleaner
+      LED_off(mole_1); 
       LED_off(mole_2);
       LED_off(mole_3);
       
@@ -163,7 +149,7 @@ void loop() {
   }
 }
 
-void LED_on(int pinNum){
+void LED_on(int pinNum){ // Functions to write LEDs, not necessary but helps with reading.
 
   digitalWrite(pinNum, HIGH);
   
